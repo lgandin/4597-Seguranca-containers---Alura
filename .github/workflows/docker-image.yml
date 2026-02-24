@@ -22,4 +22,13 @@ jobs:
          dockerhub-user: ${{secrets.DOCKERHUB_USERNAME}}
          dockerhub-password: ${{secrets.DOCKERHUB_TOKEN}}
 
+    - name: Aqua Security Trivy
+      uses: aquasecurity/trivy-action@0.34.1
+      with:
+        scan-type: vuln
+        image-ref: leonardosartorello/seguranca_docker:${{ github.run_number }}
+        exit-code: 1
+        severity: HIGH,CRITICAL
+        format: table
+          
           
