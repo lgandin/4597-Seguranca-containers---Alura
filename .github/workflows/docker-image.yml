@@ -13,3 +13,13 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag leonardosartorello/seguranca_docker:${{ github.run_number }}
 
+    - name: Docker Scout
+      uses: docker/scout-action@v1.18.2
+      with:
+         command: quickview
+         image: leonardosartorello/seguranca_docker:${{ github.run_number }}
+         ignore-base: FALSE
+         dockerhub-user: ${{secrets.DOCKERHUB_USERNAME}}
+         dockerhub-password: ${{secrets.DOCKERHUB_TOKEN}}
+
+          
